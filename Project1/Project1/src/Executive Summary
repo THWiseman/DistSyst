@@ -1,0 +1,44 @@
+Project 1 Executive Summary
+Thomas Wiseman
+
+In this project, I created a client + server that can send/receive messages to/from each other using either TCP or UDP.
+
+The server maintains a key/value store that the client can manipulate through PUT, GET, and DELETE requests. When the
+client sends PUT [key] [value], the server will insert that entry into the map. GET [key] will return the
+specified key from the map, and DELETE [key] will remove the specified key from the map.
+A TERMINATE message from the client will cause the server to close.
+
+This server's map has some prepopulated values in it, and during the program execution the client will add new ones,
+as well as deleting/retrieving both prepopulated and recently added values.
+
+Assignment overview:
+This project demonstrates what is needed for a client and server to have two way communication with one another using
+sockets and both the TCP and UDP protocols. We learned about how the server needs to be listening for traffic at a
+particular address and port, and the client needs to initiate a request to that address and port. We also had to
+account for the fact that since UDP does not establish a two way connection the way TCP does, different logic is needed for
+handling traffic and sockets depending on the protocol used. TCP communication happens over an established shocket, while
+ 2-way UDP communication normally relies on sending a response back to the source IP/port included in each UDP packet.
+ A key value store was used as a simplified model for what clients/servers would be doing in the real world, e.g.
+ accessing data in a database and displaying it to a user. Specialized functions in the Server and Client were used
+ to interpret and encoded the messages they would receive from and send to one another.
+
+
+Technical Impression:
+I had quite a few interesting problems to solve during this project. TCP was definitely easier to implement than UDP since
+the TCP socket and protocol handled a lot of the hard work relating to reliable two way communication. When working with UDP
+much more work needed to be done to determine the context around a packet and if some were sent in error/duplicated/lost.
+
+I thought the assignment was well laid out. It had clear instructions, and creating a reliable two-way communication using
+the most fundamental protocols for internet traffic was a good lesson. I'm very impressed with how robust the Java
+standard library is for handling network traffic.
+
+Needing to implement both UDP and TCP communcation was a good programming challenge too, because they shared a lot of common functionality,
+but also had important differences. Figuring out the best way to abstract the implementation to avoid duplicating code
+in both the client and server taught me a a lot about how the two protocols are alike/different.
+
+
+In order to run:
+Start ServerMain with the listen port as a command line argument. You can change the one commented line to switch
+between a TCP or UDP server. Then, start up ClientMain with an IP address and port number as command line arguments.
+Again, you can change the commented line to choose whether it uses UDP or TCP. Once started, the client will execute
+a series of preplanned requests, print the responses from the server, and then terminate. 

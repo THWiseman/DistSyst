@@ -4,7 +4,6 @@ import java.io.*;
 public class BasicServerImpl {
 
     private boolean m_listening = false;
-
     private ServerSocket m_server = null;
     private Socket m_socket = null;
     private BufferedReader m_is = null;
